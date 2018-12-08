@@ -5,6 +5,11 @@ export let MENU_ITEM = [
         icon: 'dashboard'
     },
     {
+        path: 'digi24',
+        title: 'Digi24',
+        icon: 'dashboard'
+    },
+    {
         path: 'editor',
         title: 'Pell Editor',
         icon: 'pencil'

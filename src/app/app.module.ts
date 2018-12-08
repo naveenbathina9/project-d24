@@ -5,6 +5,7 @@ import { PagesModule } from './pages/pages.module';
 import { routing } from './app.routing';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Digi24Module } from './digi24/digi24.module';
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     FormsModule,
     PagesModule,
+    Digi24Module,
     routing
   ],
   declarations: [

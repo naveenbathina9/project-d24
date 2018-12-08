@@ -10,6 +10,11 @@ const appRoutes: Routes = [
   {
     path: '**',
     redirectTo: 'pages/index'
+  },
+  {
+    path: 'digi24',
+    redirectTo: 'digi24',
+    pathMatch: 'full'
   }
 ];
 

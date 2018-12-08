@@ -1,0 +1,65 @@
+<!-- <div class="row">
+  <div class="col-md-12">
+    
+  </div>
+</div> -->
+<div class="row">
+    <div class="col-md-12">
+      <card cardTitle="LIST OF USERS">
+        <!-- <button type="button" class="btn btn-primary pull-right" style="margin-bottom:18px"> CREATE NEW USER </button> -->
+        <div class="btn-wrap division pull-right" style="margin-bottom:18px">
+          <button type="button" class="btn btn-warning btn-with-icon">
+            <i class="fa fa-user-plus fa-fw"></i> CREATE NEW USER </button>
+        </div>
+
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>EMPLOYEE ID</th>
+              <th>FIRST NAME</th>
+              <th>LAST NAME</th>
+              <th>DESIGNATION</th>
+              <th>USER NAME</th>
+              <th>ACTION </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of employeeList | paginate: { id: 'pager', itemsPerPage: pageSize, currentPage: pageNumber};let index = index">
+              <td>{{item.EmployeeId }}</td>
+              <td>{{item.FirstName}}</td>
+              <td>{{item.LastName}}</td>
+              <td>{{item.Designation}}</td>
+              <td>{{item.UserName}}</td>
+              <td>
+                <button class="btn btn-icon btn-success" (click)="viewUser(item.EmployeeId)"><i class="fa fa-eye fa-fw"></i></button>
+                <button class="btn btn-icon btn-warning" (click)="editUser(item.EmployeeId)"><i class="fa fa-pencil fa-fw"></i></button>
+                <button class="btn btn-icon btn-danger" (click)="deleteUser(item.EmployeeId)" ><i class="fa fa-trash fa-fw"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <form class="pagination-wrapper">
+          <div class="form-group pages">
+            <pagination-controls class="my-pagination" id="pager" (pageChange)="pageChanged($event)" maxSize="9" directionLinks="true"
+              autoHide="true" previousLabel="Prev" nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+              screenReaderCurrentLabel="You're on page">
+            </pagination-controls>
+          </div>
+          <div class="form-group options pages">
+            <div class="input-group input-group-sm">
+              <select class="form-control" name="pageChangedName" [(ngModel)]="pageSize" (ngModelChange)="loadData()">
+                <option>1</option>
+                <option>5</option>
+                <option>10</option>
+                <option>20</option>
+                <option>50</option>
+                <option>100</option>
+                <option>200</option>
+              </select>
+              <span class="input-group-addon addon-right">Per Page</span>
+            </div>
+          </div>
+        </form>
+      </card>
+    </div>
+  </div> 

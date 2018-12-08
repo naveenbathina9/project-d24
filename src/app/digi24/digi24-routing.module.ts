@@ -8,7 +8,8 @@ const routes: Routes = [
     component: Digi24Component,
     children: [
         { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-        { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' }
+        { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
+        { path: 'manageuser', loadChildren: './user-management/user-management.module#UserManagementModule' }
   ]}
 ];
 

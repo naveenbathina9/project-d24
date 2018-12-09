@@ -31,10 +31,15 @@ export class ListUserComponent extends RootComponent implements OnInit {
     this.loadData();    
   }
 
+  createUser(){
+    //this.router.navigate(['create']);
+    this.router.navigate(['../create'], { relativeTo: this.route });
+  }
+
   viewUser(id:string){
     console.log(id);
-    //this.router.navigate(['/detail']);
-    this.router.navigate(['../detail'], { relativeTo: this.route });
+    this.router.navigate(['../detail']);
+    //this.router.navigate(['../detail'], { relativeTo: this.route });
   }
 
   deleteUser(id:string){
@@ -47,8 +52,8 @@ export class ListUserComponent extends RootComponent implements OnInit {
       if(data.IsFaulted == false){
          //data.ResponseData
         console.log(data.ResponseData);
-        //this.router.navigate(['/update']);
-        this.router.navigate(['../update'], { relativeTo: this.route });
+        this.router.navigate(['../update']);
+        //this.router.navigate(['../update'], { relativeTo: this.route });
       }
     });
   }

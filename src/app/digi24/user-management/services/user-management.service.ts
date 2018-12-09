@@ -9,9 +9,14 @@ export class UserManagementService {
   constructor(private http:HttpClient) { 
   }
 
+  createUser(employee:any){
+    return this.http.post(this.baseURL+'CreateEmployee',employee);
+  }
+
   getAllEmployees(){
     return this.http.get<HttpResponseModel<EmployeeModel[]>>(this.baseURL+'GetAllEmployees');
   }
+
   getEmployeeById(id:string){
     return this.http.get<HttpResponseModel<EmployeeModel>>(this.baseURL+'GetEmployeeById?id='+id);
   }

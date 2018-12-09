@@ -1,7 +1,7 @@
 export class EmployeeModel {
-     public EmployeeId: string;
-     public FirstName: string;
-     public LastName: string;
-     public Designation:string;
-     public UserName: string;
+     public employeeId: string;
+     public firstName: string;
+     public lastName: string;
+     public designation:string;
+     public userName: string;
 }

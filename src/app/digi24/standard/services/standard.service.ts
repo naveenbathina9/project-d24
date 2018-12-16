@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { StandardModel } from '../model/standard-model';
 import { HttpResponseModel } from '../model/http-response-model';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class StandardService {
@@ -14,7 +15,7 @@ getAllStandards() {
 }
 
 createStandard() {
-
+  
 }
 
 updateStandard() {
@@ -22,7 +23,8 @@ updateStandard() {
 }
 
 getStandardById(id: string) {
-
+  return this.http.get<HttpResponseModel<StandardModel>>(this.baseUrl + 
+                            'GetStandardById?StandardId=1');
 }
 
 deleteStandard(id: string) {

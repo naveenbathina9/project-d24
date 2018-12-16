@@ -19,7 +19,6 @@ export class UpdateUserComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private userManagementService:UserManagementService, private location:Location, private avRoute: ActivatedRoute) { 
     if(this.avRoute.snapshot.params["id"]){
-      //this.id = parseInt( this.avRoute.snapshot.params["id"]);
       this.id = this.avRoute.snapshot.params["id"];
       console.log(this.id);
     }
@@ -28,7 +27,7 @@ export class UpdateUserComponent implements OnInit {
   ngOnInit() {
     this.createForm();
     this.userManagementService.getEmployeeById(this.id)
-    .subscribe(resp => this.formData.setValue(resp.responseData)
+    .subscribe(resp => this.formData.patchValue(resp.responseData)
                , error => this.errorMessage = error);
   }
 
@@ -45,5 +44,10 @@ export class UpdateUserComponent implements OnInit {
 
   // convenience getter for easy access to form fields
   get f() { return this.formData.controls; }
+
+  onSubmit() {
+    this.userManagementService.updateUser(this.formData.value)
+    .subscribe(x => { console.log(x); }, error=> { console.log(error);});
+  }
 
 }

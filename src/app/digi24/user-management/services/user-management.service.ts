@@ -42,6 +42,13 @@ export class UserManagementService {
       .catch(this.handleErrorObservable);
   }
 
+  updateUser(employee:EmployeeModel):any{
+    console.log(employee);
+    return this.http.put(this.baseURL+'UpdateEmployee',employee, httpOptions)
+      .map(this.extractData)
+      .catch(this.handleErrorObservable);
+  }
+
   getAllEmployees(){
     return this.http.get<HttpResponseModel<EmployeeModel[]>>(this.baseURL+'GetAllEmployees');
   }

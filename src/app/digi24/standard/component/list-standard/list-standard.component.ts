@@ -20,19 +20,24 @@ export class ListStandardComponent implements OnInit {
   pageSize = 10;
   pageNumber = 1;
 
-  constructor(private _standardService: StandardService) { }
+  constructor(private _standardService: StandardService,
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.loadData();
+  }
+
+  viewStandard(id: string){
+    this.router.navigate(['../view'], {queryParams: {id: id} , relativeTo: this.route });
   }
 
   loadData() {
     this._standardService.getAllStandards().subscribe(
       (data: StandardModel[]) => {
           this.standardList = data;
-          console.log(this.standardList);
         }
-    )
+    );
   }
 
   pageChanged(pN: number): void {

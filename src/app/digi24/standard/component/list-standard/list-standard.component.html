@@ -8,6 +8,7 @@
             <th>Class</th>
             <th>Section</th>
             <th>Medium</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -16,6 +17,11 @@
             <td>{{item.section}}</td>
             <td>{{item.class}}</td>
             <td>{{item.medium}}</td>
+            <td>
+              <button (click)="viewStandard(item.standardId)"><i class="fa fa-eye fa-fw"></i></button>
+              <button><i class="fa fa-pencil fa-fw"></i></button>
+              <button><i class="fa fa-trash fa-fw"></i></button>
+            </td>
           </tr>
         </tbody>
       </table>

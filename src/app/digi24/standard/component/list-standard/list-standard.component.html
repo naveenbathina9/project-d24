@@ -4,17 +4,17 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th>Standard</th>
-            <th>Class</th>
-            <th>Section</th>
-            <th>Medium</th>
+            <th>STANDARD ID</th>
+            <th>CLASS</th>
+            <th>SECTION</th>
+            <th>MEDIUM</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of standardList | paginate: { id: 'pager', itemsPerPage: pageSize, currentPage: pageNumber};let index = index">
             <td>{{item.standardId}}</td>
-            <td>{{item.section}}</td>
             <td>{{item.class}}</td>
+            <td>{{item.section}}</td>
             <td>{{item.medium}}</td>
           </tr>
         </tbody>

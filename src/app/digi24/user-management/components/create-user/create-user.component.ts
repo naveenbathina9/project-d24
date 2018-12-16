@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserManagementService } from '../../services/user-management.service';
 
@@ -14,7 +15,7 @@ export class CreateUserComponent implements OnInit {
   submitted = false;
   loading = false;
 
-  constructor(private formBuilder: FormBuilder, private userManagementService:UserManagementService) { }
+  constructor(private formBuilder: FormBuilder, private userManagementService:UserManagementService, private location:Location) { }
 
   ngOnInit() {
     this.createForm();
@@ -31,6 +32,11 @@ export class CreateUserComponent implements OnInit {
     });
   }
 
+  GoBack(){
+    //console.log("Calling ShowEmployeeList");
+    this.location.back();
+  }
+
   // convenience getter for easy access to form fields
   get f() { return this.formData.controls; }
 
@@ -44,8 +50,10 @@ export class CreateUserComponent implements OnInit {
         return;
     }
     //console.log(this.createUserForm.value);
-    this.userManagementService.createUser(this.formData.value);
-    alert('SUCCESS!! :-)')
+    this.userManagementService.createUser(this.formData.value)
+      .subscribe(x => { console.log(x); }, error=> { console.log(error);});
+    //alert('SUCCESS!! :-)')
     this.loading = false;
+    this.location.back();
   }
 }

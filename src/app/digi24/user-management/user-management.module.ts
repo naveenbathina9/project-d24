@@ -11,6 +11,8 @@ import { ViewUserComponent } from './components/view-user/view-user.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
+import { Logger , Options as LoggerOptions, Level as LoggerLevel } from "angular2-logger/core";
+import { LOG_LOGGER_PROVIDERS } from "angular2-logger/app/core/providers";
 
 @NgModule({
   imports: [
@@ -29,6 +31,7 @@ import { SharedModule } from '../../shared/shared.module';
     UpdateUserComponent, 
     ListUserComponent, 
     ViewUserComponent
-  ]
+  ],
+  providers: [ Logger, LOG_LOGGER_PROVIDERS ]
 })
 export class UserManagementModule { }

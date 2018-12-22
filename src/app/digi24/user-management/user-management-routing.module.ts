@@ -14,7 +14,7 @@ const routes: Routes = [
     { path:'', redirectTo:'list', pathMatch:'full'  },
     { path:'list', component:ListUserComponent },
     { path:'create', component:CreateUserComponent },
-    { path:'update', component:UpdateUserComponent},
+    { path:'update/:id', component:UpdateUserComponent},
     { path:'detail', component:ViewUserComponent}
   ]}
 ];

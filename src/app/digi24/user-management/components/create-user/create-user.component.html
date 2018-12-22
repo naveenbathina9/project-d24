@@ -1,14 +1,5 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <!-- <div class="form-group">
-        <button type="button" class="btn btn-primary pull-right" (click)="GoBack()"> Go Back </button>
-    </div> -->
-<!-- 
-    <div class="btn-wrap division pull-right form-group">
-        <button type="button" class="btn btn-danger btn-with-icon" (click)="GoBack()">
-            <i class="fa fa-arrow-left fa-fw"></i> BACK </button>
-    </div> -->
-
     <form [formGroup]="formData" (ngSubmit)="onSubmit()" class="center-allign">
         <div class="form-group">
             <label>First Name</label>
@@ -53,7 +44,6 @@
         <div class="form-group">
                 <button [disabled]="loading" class="btn btn-success btn-with-icon pull-left">
                         <i class="fa fa-check fa-fw"></i> SUBMIT </button>
-            <!-- <button [disabled]="loading" class="btn btn-primary"> CREATE USER </button> -->
             <button type="button" class="btn btn-danger btn-with-icon pull-right" (click)="GoBack()">
                     <i class="fa fa-times fa-fw"></i> CANCEL </button>
         </div>

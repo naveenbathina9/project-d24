@@ -21,7 +21,7 @@ export class UserManagementService {
   }
 
   extractData(res: Response) {
-    let body = res.json();
+    let body = res;
     return body || {};
   }
 
@@ -36,15 +36,15 @@ export class UserManagementService {
   }
 
   createUser(employee:EmployeeModel):any{
-    console.log(employee);
+    //console.log(employee);
     return this.http.post(this.baseURL+'CreateEmployee',employee, httpOptions)
       .map(this.extractData)
       .catch(this.handleErrorObservable);
   }
 
   updateUser(employee:EmployeeModel):any{
-    console.log(employee);
-    return this.http.put(this.baseURL+'UpdateEmployee',employee, httpOptions)
+    //console.log(employee);
+    return this.http.post(this.baseURL+'UpdateEmployee',employee, httpOptions)
       .map(this.extractData)
       .catch(this.handleErrorObservable);
   }

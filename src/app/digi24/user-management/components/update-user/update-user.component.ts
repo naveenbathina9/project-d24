@@ -3,6 +3,9 @@ import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserManagementService } from '../../services/user-management.service';
 import { ActivatedRoute } from '@angular/router';
+import { RootComponent } from '../../../../shared/roots/root.component';
+import { GlobalService } from '../../../../shared/services/global.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-update-user',
@@ -10,14 +13,19 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./update-user.component.scss'],
   providers:[ UserManagementService ]
 })
-export class UpdateUserComponent implements OnInit {
+export class UpdateUserComponent  extends RootComponent  implements OnInit {
   id:string;
   formData:FormGroup;
   submitted = false;
   loading = false;
   errorMessage: any;
 
-  constructor(private formBuilder: FormBuilder, private userManagementService:UserManagementService, private location:Location, private avRoute: ActivatedRoute) { 
+  constructor(private formBuilder: FormBuilder, 
+    private userManagementService:UserManagementService, 
+    private location:Location, 
+    private avRoute: ActivatedRoute, 
+    public _globalService: GlobalService) {
+      super(_globalService);
     if(this.avRoute.snapshot.params["id"]){
       this.id = this.avRoute.snapshot.params["id"];
       console.log(this.id);
@@ -47,7 +55,30 @@ export class UpdateUserComponent implements OnInit {
 
   onSubmit() {
     this.userManagementService.updateUser(this.formData.value)
-    .subscribe(x => { console.log(x); }, error=> { console.log(error);});
+    .subscribe(
+      success => {
+        // this.alertMessage(
+        //   {
+        //     type: 'success',
+        //     title: 'Update Result!',
+        //     value: success.responseMessage
+        //   }
+        // );
+
+        swal({
+          position: 'center',
+          type: 'success',
+          title: success.responseMessage,
+          showConfirmButton: false,
+          timer: 1500
+        })
+          console.log(success); 
+        }, 
+      error=> { 
+        console.log(error);  
+      }
+    );
   }
+
 
 }

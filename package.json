@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
     "angular2-froala-wysiwyg": "^2.6.0",
+    "angular2-logger": "^0.7.0",
     "animate.css": "^3.5.2",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",

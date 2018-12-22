@@ -12,24 +12,25 @@ import { ActivatedRoute } from '@angular/router';
   providers: [StandardService]
 })
 export class ViewStandardComponent implements OnInit {
-  standardmodel: StandardModel;
+  standardmodel: StandardModel = new StandardModel();
   id: string;
 
   constructor(private _standardService: StandardService, 
-              private router: ActivatedRoute) { }
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.router.queryParams.subscribe(
+    this.route.queryParams.subscribe(
       (params) => {
         this.id = params['id'];
       }
     );
-    
-    console.log('params ' + this.id);
 
     this._standardService.getStandardById(this.id).subscribe(
       (data: HttpResponseModel<StandardModel>) => {
-          this.standardmodel = data.ResponseData;
+        if(data.isFaulted === false) {
+          this.standardmodel = data.responseData;
+          console.log(data.responseData);
+        }
       }
     );
   }

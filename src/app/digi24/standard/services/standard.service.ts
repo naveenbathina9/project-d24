@@ -14,17 +14,18 @@ getAllStandards() {
   return this.http.get<StandardModel[]>(this.baseUrl + 'GetStandards');
 }
 
-createStandard() {
-  
+createStandard(standardModel: StandardModel) {
+  return this.http.post<HttpResponseModel<number>>(this.baseUrl + 'CreateStandard', standardModel);
 }
 
-updateStandard() {
-
+updateStandard(standardModel: StandardModel) {
+  console.log(standardModel);
+  return this.http.post<HttpResponseModel<boolean>>(this.baseUrl + 'UpdateStandard', standardModel);
 }
 
 getStandardById(id: string) {
   return this.http.get<HttpResponseModel<StandardModel>>(this.baseUrl + 
-                            'GetStandardById?StandardId=1');
+                            'GetStandardById?StandardId=' + id);
 }
 
 deleteStandard(id: string) {

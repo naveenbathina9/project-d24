@@ -1,5 +1,5 @@
 export class HttpResponseModel<T> {
-    public ResponseMessage: string;
-    public ResponseData: T;
-    public IsFaulted: boolean;
+    public responseMessage: string;
+    public responseData: T;
+    public isFaulted: boolean;
 }

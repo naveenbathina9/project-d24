@@ -1,18 +1,18 @@
 <div class="col-md-12">
   <card cardTitle="Standard Detail">
-    
+
       <label class="control-label">Standard</label>
-      <input type="text" class="form-control" [ngModel]="standardmodel.standardId | async">
+      <input type="text" class="form-control" [ngModel]="standardmodel.standardId">
       <br>
       <label class="control-label">Class</label>
-      <input type="text" class="form-control">
+      <input type="text" class="form-control" [ngModel]="standardmodel.class">
       <br>
       <label class="control-label">Section</label>
-      <input type="text" class="form-control">
+      <input type="text" class="form-control" [ngModel]="standardmodel.section">
       <br>
       <label class="control-label">Medium</label>
-      <input type="text" class="form-control">
+      <input type="text" class="form-control" [ngModel]="standardmodel.medium">
       <br>
-      <button type="submit" class="btn btn-primary">OK</button>
+      
   </card>
 </div>

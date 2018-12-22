@@ -5,6 +5,7 @@ import { StandardModel } from '../../model/standard-model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { GlobalService } from '../../../../shared/services/global.service';
 import { RootComponent } from '../../../../shared/roots/root.component';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-standard',
@@ -12,7 +13,7 @@ import { RootComponent } from '../../../../shared/roots/root.component';
   styleUrls: ['./list-standard.component.scss'],
   providers: [StandardService]
 })
-export class ListStandardComponent implements OnInit {
+export class ListStandardComponent extends RootComponent implements OnInit {
 
   standardList: StandardModel[];
 
@@ -22,14 +23,26 @@ export class ListStandardComponent implements OnInit {
 
   constructor(private _standardService: StandardService,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              public globalService: GlobalService) { 
+                super(globalService);
+              }
 
   ngOnInit() {
     this.loadData();
   }
 
-  viewStandard(id: string){
-    this.router.navigate(['../view'], {queryParams: {id: id} , relativeTo: this.route });
+  viewStandard(id: string) {
+    this.router.navigate(['../view'], { queryParams: { id: id }, relativeTo: this.route });
+  }
+
+  createStandard() {
+    this.router.navigate(['../create'], { relativeTo: this.route });
+  }
+
+  updateStandard(standardId: string) {
+    this.router.navigate(['../update'], { queryParams: { Id: standardId }, 
+                                          relativeTo: this.route });
   }
 
   loadData() {
@@ -38,6 +51,23 @@ export class ListStandardComponent implements OnInit {
           this.standardList = data;
         }
     );
+  }
+
+  deleteStandard() {
+    swal({
+      title: 'Are you sure?',
+      text: 'you won\'t be able to revert this!',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if(result.value) {
+        var msg = 'Delete not implemented';
+        swal('Not Deleted', msg, 'error');
+      }
+    })
   }
 
   pageChanged(pN: number): void {

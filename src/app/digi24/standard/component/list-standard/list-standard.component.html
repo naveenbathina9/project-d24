@@ -1,6 +1,14 @@
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-10 col-md-offset-1">
     <card cardTitle="Standards">
+
+      <div class="btn-wrap division pull-right form-group">
+        <button type="button" class="btn btn-success btn-with-icon"
+                (click)="createStandard()"><i class="fa fa-plus-square fa-fw"></i></button>
+        <button type="button" class="btn btn-info btn-with-icon"
+                (click)="loadData()"><i class="fa fa-refresh fa-fw"></i></button>
+      </div>
+
       <table class="table table-hover">
         <thead>
           <tr>
@@ -18,9 +26,9 @@
             <td>{{item.class}}</td>
             <td>{{item.medium}}</td>
             <td>
-              <button (click)="viewStandard(item.standardId)"><i class="fa fa-eye fa-fw"></i></button>
-              <button><i class="fa fa-pencil fa-fw"></i></button>
-              <button><i class="fa fa-trash fa-fw"></i></button>
+              <button class="btn btn-icon btn-success" (click)="viewStandard(item.standardId)"><i class="fa fa-eye fa-fw"></i></button>
+              <button class="btn btn-icon btn-warning" (click)="updateStandard(item.standardId)"><i class="fa fa-pencil fa-fw"></i></button>
+              <button class="btn btn-icon btn-danger" (click)="deleteStandard()"><i class="fa fa-trash fa-fw"></i></button>
             </td>
           </tr>
         </tbody>

@@ -1,3 +1,44 @@
-<p>
-  create-standard works!
-</p>
+<div class="col-md-6 col-md-offset-3">
+  <card cardTitle="Standard Detail">
+    
+    <form (ngSubmit)="onSubmit(standardForm)" #standardForm="ngForm">
+      
+      <div class="form-group" hidden="true">
+        <label class="control-label">Standard</label>
+        <input type="text" name="standardId" class="form-control"
+              [ngModel]="standardModel.standardId">
+      </div>
+      
+      <div class="form-group">
+        <label class="control-label">Class</label>
+        <input type="text" name="class" class="form-control" required
+              [(ngModel)]="standardModel.class">
+      </div>
+      
+      <div class="form-group">
+        <label class="control-label">Section</label>
+        <input type="text" name="section" class="form-control" required
+              [(ngModel)]="standardModel.section">
+      </div>
+      
+      <div class="form-group">
+        <label class="control-label">Medium</label>
+        <input type="text" name="medium" class="form-control" required
+              [(ngModel)]="standardModel.medium">
+      </div>
+
+      <br>
+
+      <div class="form-group">
+        <button type="submit" [disabled]="loading || !standardForm.form.valid" 
+                class="btn btn-success btn-with-icon">
+                <i class="fa fa-check fa-fw"></i> CREATE</button>
+
+        <button type="button" (click) = "onCancel()" [disabled]="loading"
+                class="btn btn-danger pull-right btn-with-icon">
+                <i class="fa fa-times fa-fw"></i> BACK</button>
+      </div>
+      
+    </form>
+  </card>
+</div>

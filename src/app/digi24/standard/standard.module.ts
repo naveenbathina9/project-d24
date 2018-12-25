@@ -21,6 +21,12 @@ import { HttpClientModule } from '@angular/common/http';
     SharedModule,
     NgxPaginationModule
   ],
-  declarations: [StandardComponent, CreateStandardComponent, UpdateStandardComponent, ListStandardComponent, ViewStandardComponent]
+  declarations: [
+    StandardComponent, 
+    CreateStandardComponent, 
+    UpdateStandardComponent, 
+    ListStandardComponent, 
+    ViewStandardComponent
+  ]
 })
 export class StandardModule { }

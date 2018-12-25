@@ -15,7 +15,7 @@ import swal from 'sweetalert2';
 })
 export class ListStandardComponent extends RootComponent implements OnInit {
 
-  standardList: StandardModel[];
+  standardList: StandardModel[] = [];
 
   /* pagination Info */
   pageSize = 10;

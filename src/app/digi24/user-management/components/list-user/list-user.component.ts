@@ -6,7 +6,7 @@ import { Router, Route, ActivatedRoute } from '@angular/router';
 import { RootComponent } from '../../../../shared/roots/root.component';
 import { GlobalService } from '../../../../shared/services/global.service';
 import swal from 'sweetalert2';
-import { Logger } from 'angular2-logger/core';
+// import { Logger } from 'angular2-logger/core';
 
 @Component({
   selector: 'app-list-user',
@@ -26,8 +26,8 @@ export class ListUserComponent extends RootComponent implements OnInit {
   constructor( 
     private manageUserService:UserManagementService, 
     private router:Router, private route:ActivatedRoute,
-    public _globalService: GlobalService, 
-    private _logger: Logger ) {
+    public _globalService: GlobalService) {
+    // private _logger: Logger ) {
     super(_globalService);
   }
 
@@ -61,14 +61,14 @@ export class ListUserComponent extends RootComponent implements OnInit {
   }
 
   loadData() {
-    this._logger.info("Begin " +this.componentName+"#loadData()");
+    // this._logger.info("Begin " +this.componentName+"#loadData()");
     this.manageUserService.getAllEmployees().subscribe((data:HttpResponseModel<EmployeeModel[]>)=>{
       if(data.isFaulted == false){
         this.employeeList = data.responseData
         //console.log(this.employeeList);
       }
     });
-    this._logger.info("End " +this.componentName+"#loadData()");
+    // this._logger.info("End " +this.componentName+"#loadData()");
   }
 
   pageChanged(pN: number): void {

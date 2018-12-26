@@ -1,4 +1,4 @@
-<div class="col-md-12">
+<div class="col-md-6 col-md-offset-3">
   <card cardTitle="Standard Detail">
 
       <label class="control-label">Standard</label>
@@ -13,6 +13,27 @@
       <label class="control-label">Medium</label>
       <input type="text" class="form-control" [ngModel]="standardmodel.medium">
       <br>
-      
+
+      <div class="col-md-12">
+        <card cardTitle="Subjects">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Sl No.</th>
+                <th>Subject Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of subjectList; let index = index">
+                <td>{{index}}</td>
+                <td>{{item.title}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </card>
+      </div>
+
+      <button type="button" class="btn btn-danger pull-right" (click)="onCancel()">
+              <i class="fa fa-times fa-fw"></i> BACK</button>
   </card>
 </div>

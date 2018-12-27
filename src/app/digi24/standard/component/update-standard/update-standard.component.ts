@@ -22,6 +22,7 @@ export class UpdateStandardComponent extends RootComponent implements OnInit {
 standardModel: StandardModel = new StandardModel();
 subjectList: SubjectModel[] = [];
 newSubjectList: SubjectModel[] = [];
+subjectsForDeletion: number[] = [];
 updated: boolean;
 id: string;
 loading: boolean = false;
@@ -90,52 +91,85 @@ subjectPresentAlready: boolean = false;
       (data: HttpResponseModel<boolean>) => {
         if(data.isFaulted === false) {
 
-          let subjectsInserted: boolean = true;
+          let subjectsUpdated: boolean = true;
 
+          var insertCount: number = 0;
           this.newSubjectList.forEach(newSubj => {
             this.subjectService.createSubject(newSubj).subscribe(
               result => {
-                if(result.isFaulted === true) {
-                  subjectsInserted = false;
+                insertCount++;
+                  if(insertCount === this.newSubjectList.length){
+                    this.newSubjectList = [];
 
+                    if(this.subjectsForDeletion.length === 0) {
+                      swal({
+                        position: 'center',
+                        type: 'success',
+                        title: data.responseMessage,
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                    }
+                  }
+              },
+              error => {
+                this.newSubjectList = []; 
+                swal({
+                  position: 'center',
+                  type: 'error',
+                  title: data.responseMessage,
+                  showConfirmButton: false,
+                  timer: 1500
+                }).then(() => {
+                  this.loadData();
+                });
+              });
+          });
+
+          var deleteCount: number = 0;
+          this.subjectsForDeletion.forEach(subjId => {
+            this.subjectService.deleteSubjectById(subjId.toString()).subscribe(
+                result => {
+                  deleteCount++;
+                  if(deleteCount === this.subjectsForDeletion.length){
+                    this.subjectsForDeletion = [];
+
+                    swal({
+                        position: 'center',
+                        type: 'success',
+                        title: data.responseMessage,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                  }
+                },
+                error => {
+                  this.subjectsForDeletion = [];
                   swal({
                     position: 'center',
                     type: 'error',
-                    title: 'One or more subject not inserted',
-                    showConfirmButton: true
+                    title: 'one or more subject not deleted',
+                    showConfirmButton: false,
+                    timer: 1500
                   }).then(() => {
                     this.loadData();
-                  })
+                  });
                 }
-              }
-            )
-          });
-
-          if(subjectsInserted === true) {
-            this.newSubjectList = [];
-
+              )
+          })
+        } else {
             swal({
               position: 'center',
-              type: 'success',
-              title: data.responseMessage,
-              showConfirmButton: false,
-              timer: 1500
-            });
+              type: 'error',
+              title: 'subject not updated',
+              showConfirmButton: true
+            }).then(
+              () => {
+                this.loadData();
+              }
+            );
           }
-
-          //this.location.back();
-        } else {
-          swal({
-            position: 'center',
-            type: 'error',
-            title: data.responseMessage,
-            showConfirmButton: true
-            // timer: 1500
-          }).then(() => {
-            this.loadData();
-          });
-        }
-      }
+       }
     );
 
     this.loading = false;
@@ -179,6 +213,24 @@ subjectPresentAlready: boolean = false;
 
       this.newSubject = '';
     }
+  }
+
+  onDeleteSubject(subject: SubjectModel) {
+    if(this.subjectsForDeletion.indexOf(subject['subjectId']) === -1) {
+      this.subjectsForDeletion.push(subject['subjectId']);
+    }
+
+    let index: number = +this.subjectList.indexOf(subject);
+
+    if (index > -1) {
+      this.subjectList.splice(index, 1);
+    }
+
+    index = +this.newSubjectList.indexOf(subject);
+    if(index > -1) {
+      this.newSubjectList.splice(index, 1);
+    }
+
   }
 
   onCancel() {

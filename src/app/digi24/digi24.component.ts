@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./digi24.component.scss']
 })
 export class Digi24Component implements OnInit {
-loaderTemplate: string = `<img src="assets/iconfonts/ajax-loader.gif" />`;
 
   constructor() { }
 

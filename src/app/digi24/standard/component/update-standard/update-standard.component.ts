@@ -11,6 +11,7 @@ import { SubjectService } from '../../services/subject.service';
 import { SubjectModel } from '../../model/subject-model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subject } from 'rxjs';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-update-standard',
@@ -34,6 +35,7 @@ subjectPresentAlready: boolean = false;
               private route: ActivatedRoute,
               private location: Location,
               private subjectService: SubjectService,
+              private spinnerService: Ng4LoadingSpinnerService,
               public globalService: GlobalService ) {
                 super(globalService);
                }
@@ -49,6 +51,8 @@ subjectPresentAlready: boolean = false;
       }
     );
 
+    this.spinnerService.show();
+
     this.standardService.getStandardById(this.id).subscribe(
       (data: HttpResponseModel<StandardModel>) => {
         if(data.isFaulted === false) {
@@ -56,9 +60,11 @@ subjectPresentAlready: boolean = false;
 
           this.subjectService.getSubjectsByStandardId(this.id).subscribe(
             (subjectData: HttpResponseModel<SubjectModel[]>) => {
+              this.spinnerService.hide();
               this.subjectList = subjectData.responseData;
             },
             (error: HttpErrorResponse) => {
+              this.spinnerService.hide();
               swal({
                 position: 'center',
                 type: 'error',
@@ -72,6 +78,7 @@ subjectPresentAlready: boolean = false;
         }
       },
       (error: HttpErrorResponse) => {
+        this.spinnerService.hide();
         swal({
           position: 'center',
           type: 'error',

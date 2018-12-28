@@ -11,6 +11,7 @@ import { GlobalService } from '../../../../shared/services/global.service';
 import { RootComponent } from '../../../../shared/roots/root.component';
 import swal from 'sweetalert2';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-view-standard',
@@ -28,6 +29,7 @@ export class ViewStandardComponent extends RootComponent implements OnInit {
               private _subjectService: SubjectService,
               private route: ActivatedRoute,
               private location: Location,
+              private spinnerService: Ng4LoadingSpinnerService,
               public _globalService: GlobalService) {
                 super(_globalService);
                }
@@ -39,6 +41,8 @@ export class ViewStandardComponent extends RootComponent implements OnInit {
       }
     );
 
+    this.spinnerService.show();
+
     this._standardService.getStandardById(this.id).subscribe(
       (data: HttpResponseModel<StandardModel>) => {
         if(data.isFaulted === false) {
@@ -46,9 +50,11 @@ export class ViewStandardComponent extends RootComponent implements OnInit {
 
           this._subjectService.getSubjectsByStandardId(this.id).subscribe(
             (subjectData: HttpResponseModel<SubjectModel[]>) => {
+              this.spinnerService.hide();
               this.subjectList = subjectData.responseData;
             },
             (error: HttpErrorResponse) => {
+              this.spinnerService.hide();
               swal({
                 position: 'center',
                 type: 'error',
@@ -58,10 +64,11 @@ export class ViewStandardComponent extends RootComponent implements OnInit {
                   this.location.back();
                 }
               )
-            });
+            });  
         }
       },
       (error: HttpErrorResponse) => {
+        this.spinnerService.hide();
         swal({
           position: 'center',
           type: 'error',

@@ -1,0 +1,53 @@
+<div class="row col-md-12">
+  <div>
+
+    <card cardTitle="View Students of Standard">
+
+      <div class="form-group col-md-4">
+        <label class="control-label">Select Standard</label>
+        <select name="select" id="selectStandard" class="form-control">
+          <option *ngFor="let standard of standards" value="{{standard.standardId}}">
+              {{ standard.class }} - {{ standard.section }} - {{ standard.medium }}
+          </option>
+        </select>
+      </div>
+    </card>
+
+    <card>
+      <div class="row">
+        <div class="btn-wrap division pull-right form-group">
+          <button type="button" class="btn btn-success btn-with-icon"
+                  (click)="createStudent()"><i class="fa fa-plus-square fa-fw"></i></button>
+          <button type="button" class="btn btn-info btn-with-icon"
+                  (click)="loadData()"><i class="fa fa-refresh fa-fw"></i></button>
+        </div>
+      </div>
+      
+      <div class="row">
+        <form class="pagination-wrapper form-group">
+          <div class="form-group pages">
+            <pagination-controls class="my-pagination" id="pager" (pageChange)="pageChanged($event)" maxSize="9" directionLinks="true"
+              autoHide="true" previousLabel="Prev" nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+              screenReaderCurrentLabel="You're on page">
+            </pagination-controls>
+          </div>
+          <div class="form-group options pages">
+            <div class="input-group input-group-sm">
+              <select class="form-control" name="pageChangedName" [(ngModel)]="pageSize" (ngModelChange)="loadData()">
+                <option>1</option>
+                <option>5</option>
+                <option>10</option>
+                <option>20</option>
+                <option>50</option>
+                <option>100</option>
+                <option>200</option>
+              </select>
+              <span class="input-group-addon addon-right">Per Page</span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </card>
+
+  </div>
+</div>

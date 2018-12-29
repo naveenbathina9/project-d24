@@ -6,12 +6,15 @@ import { Digi24Component } from './digi24.component';
 import { LayoutModule } from '../shared/layout.module';
 import { SharedModule } from '../shared/shared.module';
 
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+
 @NgModule({
   imports: [
     CommonModule,
     LayoutModule,
     SharedModule,
-    Digi24RoutingModule
+    Digi24RoutingModule,
+    Ng4LoadingSpinnerModule
   ],
   declarations: [Digi24Component]
 })

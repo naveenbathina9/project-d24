@@ -6,6 +6,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { GlobalService } from '../../../../shared/services/global.service';
 import { RootComponent } from '../../../../shared/roots/root.component';
 import swal from 'sweetalert2';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { timeout } from 'rxjs/operators';
 
 @Component({
   selector: 'app-list-standard',
@@ -24,6 +26,7 @@ export class ListStandardComponent extends RootComponent implements OnInit {
   constructor(private _standardService: StandardService,
               private router: Router,
               private route: ActivatedRoute,
+              private spinnerService: Ng4LoadingSpinnerService,
               public globalService: GlobalService) { 
                 super(globalService);
               }
@@ -46,10 +49,23 @@ export class ListStandardComponent extends RootComponent implements OnInit {
   }
 
   loadData() {
+    this.spinnerService.show();
     this._standardService.getAllStandards().subscribe(
       (data: StandardModel[]) => {
+          this.spinnerService.hide();
+          
           this.standardList = data;
-        }
+      },
+      (error) => {
+        this.spinnerService.hide();
+
+        swal({
+          title: 'erroc occured in server',
+          type: 'error',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
     );
   }
 

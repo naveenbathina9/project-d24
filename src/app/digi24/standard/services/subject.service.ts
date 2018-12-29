@@ -17,4 +17,9 @@ export class SubjectService {
     return this.http.get<HttpResponseModel<SubjectModel[]>>(this.baseUrl + 
           'GetSubjectsByStandardId?standardId=' + id);
   }
+
+  deleteSubjectById(id: string) {
+    return this.http.delete<HttpResponseModel<boolean>>(this.baseUrl + 
+          'DeleteSubjectById?subjectId=' + id);
+  }
 }

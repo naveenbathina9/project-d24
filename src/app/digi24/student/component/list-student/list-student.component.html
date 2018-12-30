@@ -3,13 +3,22 @@
 
     <card cardTitle="View Students of Standard">
 
-      <div class="form-group col-md-4">
+      <div class="form-group col-md-4 row">
         <label class="control-label">Select Standard</label>
-        <select name="select" id="selectStandard" class="form-control">
+        <select name="select" id="selectStandard" (change)="onSelectionChange($event.target.value)" 
+                class="form-control">
           <option *ngFor="let standard of standards" value="{{standard.standardId}}">
               {{ standard.class }} - {{ standard.section }} - {{ standard.medium }}
           </option>
         </select>
+      </div>
+      
+      <div class="pull-right form-group">
+        <h4>Total Classes:</h4> <h1>{{ standards.length }}</h1>
+      </div>
+
+      <div class="pull-right form-group">
+        <h4>Strength:</h4> <h1>{{ students.length }}</h1>
       </div>
     </card>
 
@@ -23,6 +32,15 @@
         </div>
       </div>
       
+      <div class="container">
+        <div *ngFor="let std of students | paginate: { id: 'pager', itemsPerPage: pageSize, currentPage: pageNumber}; 
+                    let index = index" class="chip">
+          <img src="assets/images/img_avatar_male.jpg" alt="Person" width="96" height="96">
+              {{ std.firstName }} {{ std.lastName }}
+              Roll No: {{ std.studentId }}
+        </div>
+      </div>
+
       <div class="row">
         <form class="pagination-wrapper form-group">
           <div class="form-group pages">

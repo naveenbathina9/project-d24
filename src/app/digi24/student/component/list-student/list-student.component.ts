@@ -8,6 +8,7 @@ import { GlobalService } from '../../../../shared/services/global.service';
 import swal from 'sweetalert2';
 import { StudentService } from '../../services/student.service';
 import { StudentBasicData } from '../../models/student-basic-data';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list-student',
@@ -27,6 +28,8 @@ export class ListStudentComponent extends RootComponent implements OnInit {
 
   constructor(private standardService: StandardService,
               private studentService: StudentService,
+              private router: Router,
+              private route: ActivatedRoute,
               private spinnerService: Ng4LoadingSpinnerService,
               private globalservice: GlobalService) { 
                 super(globalservice);
@@ -58,7 +61,7 @@ export class ListStudentComponent extends RootComponent implements OnInit {
   }
 
   createStudent() {
-
+    this.router.navigate(['../create'], { relativeTo: this.route });
   }
 
   loadData() {

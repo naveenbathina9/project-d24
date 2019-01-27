@@ -21,10 +21,11 @@
 
 .container {
     display: grid;
-    grid-template-columns: 25% 25% 25%;
+    grid-template-columns: 33% 33% 33%;
     justify-content: space-evenly;
-
+    
     .chip {
+        cursor: pointer;
         padding: 0 20px;
         height: 70px;
         width: 200px;

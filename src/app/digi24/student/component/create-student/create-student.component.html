@@ -9,22 +9,28 @@
       <div class="row form-group">
         <div class="col-md-5 col-md-offset-0.5">
           <label class="control-label">First Name</label>
+          <span [hidden]="firstnameControl.valid || firstnameControl.pristine"
+                class="alert text-danger">(First name is required)</span>
           <input type="text" required class="form-control"  name='firstName' 
-                 [(ngModel)]="student.FirstName">
+                [(ngModel)]="student.FirstName" #firstnameControl="ngModel">
         </div>
          
         <div class="col-md-5 col-md-offset-1">
           <label class="control-label">Last Name</label>
+          <span [hidden]="lastnameControl.valid || lastnameControl.pristine"
+                class="alert text-danger">(Last name is required)</span>
           <input type="text" required class="form-control" name="lastName"
-                 [(ngModel)]="student.LastName">
+                [(ngModel)]="student.LastName"  #lastnameControl="ngModel">
         </div>
       </div>
     
       <div class="row form-group">
         <div class="col-md-5">
           <label class="control-label">Gender</label>
-          <select class="form-control" name="gender" 
-                 [(ngModel)]="student.Gender">
+          <span [hidden]="genderControl.untouched || student.Gender !== '-1'"
+                class="alert text-danger">(Select gender)</span>
+          <select class="form-control" name="gender"
+                [(ngModel)]="student.Gender" #genderControl="ngModel">
             <option value="-1" >Select Gender</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
@@ -65,8 +71,10 @@
         
         <div class="col-md-5 col-md-offset-1">
           <label class="control-label">Parent Mobile Number</label>
+          <span [hidden]="contactControl.valid || contactControl.untouched"
+                class="alert text-danger">(Provide mobile number)</span>
           <input type="text" required class="form-control" name="parentMobile"
-                 [(ngModel)]="student.ParentMobileNumber">
+                 [(ngModel)]="student.ParentMobileNumber" #contactControl="ngModel">
         </div>
       </div>
     

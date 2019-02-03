@@ -22,6 +22,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 export class UpdateStandardComponent extends RootComponent implements OnInit {
 standardModel: StandardModel = new StandardModel();
 subjectList: SubjectModel[] = [];
+allSubjects: SubjectModel[] = [];
 newSubjectList: SubjectModel[] = [];
 subjectsForDeletion: number[] = [];
 updated: boolean;
@@ -52,16 +53,19 @@ subjectPresentAlready: boolean = false;
     );
 
     this.spinnerService.show();
-
+    
     this.standardService.getStandardById(this.id).subscribe(
       (data: HttpResponseModel<StandardModel>) => {
         if(data.isFaulted === false) {
           this.standardModel = data.responseData;
 
-          this.subjectService.getSubjectsByStandardId(this.id).subscribe(
+          this.subjectService.getAllSubjects().subscribe(
             (subjectData: HttpResponseModel<SubjectModel[]>) => {
               this.spinnerService.hide();
-              this.subjectList = subjectData.responseData;
+              this.allSubjects = subjectData.responseData;
+              this.subjectList = this.allSubjects.filter(
+                subject => subject.Standard === this.id
+              )
             },
             (error: HttpErrorResponse) => {
               this.spinnerService.hide();

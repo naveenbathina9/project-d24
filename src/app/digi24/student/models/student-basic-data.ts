@@ -8,6 +8,7 @@ export class StudentBasicData {
     public MotherName: string;
     public ParentEmailAddress: string;
     public ParentMobileNumber: string;
+    public AcademicYear: string
     public ProfilePicture: string;
     public Standard: string;
 }

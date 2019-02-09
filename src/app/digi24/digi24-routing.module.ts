@@ -11,7 +11,8 @@ const routes: Routes = [
         { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
         { path: 'manageuser', loadChildren: './user-management/user-management.module#UserManagementModule' },
         { path: 'standard', loadChildren: './standard/standard.module#StandardModule' },
-        { path: 'student', loadChildren: './student/student.module#StudentModule'}
+        { path: 'student', loadChildren: './student/student.module#StudentModule'},
+        { path: 'employee', loadChildren: './employee/employee.module#EmployeeModule'}
   ]}
 ];
 

@@ -22,4 +22,9 @@ export class SubjectService {
     return this.http.delete<HttpResponseModel<boolean>>(this.baseUrl + 
           'DeleteSubjectById?subjectId=' + id);
   }
+
+  getAllSubjects() {
+    return this.http.get<HttpResponseModel<SubjectModel[]>>(this.baseUrl + 
+          'GetAllSubjects');
+  }
 }

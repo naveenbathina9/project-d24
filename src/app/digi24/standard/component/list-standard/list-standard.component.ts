@@ -7,7 +7,6 @@ import { GlobalService } from '../../../../shared/services/global.service';
 import { RootComponent } from '../../../../shared/roots/root.component';
 import swal from 'sweetalert2';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-import { timeout } from 'rxjs/operators';
 
 @Component({
   selector: 'app-list-standard',

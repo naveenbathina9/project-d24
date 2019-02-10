@@ -28,7 +28,7 @@
                    class="alert text-danger">(Select gender)</span>
                 <select class="form-control" name="gender"
                 [(ngModel)]="student.Gender" #genderControl="ngModel">
-                <option value="-1" >Select Gender</option>
+                <option value="-1" disabled>Select Gender</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 </select>
@@ -47,28 +47,28 @@
              </div>
           </div>
           <br>
-          <label class="control-label">Parent/ Guardian Information:</label>
+          Parent/ Guardian Information:
           <br><br>
           <div class="row form-group">
              <div class="col-md-5">
-                <label class="control-label">Father/ Guardian Name</label>
+                <label class="control-label">Father/ Guardian's Name</label>
                 <input type="text" class="form-control" name="fatherName"
                 [(ngModel)]="student.FatherName">
              </div>
              <div class="col-md-5 col-md-offset-1">
-                <label class="control-label">Mother Name</label>
+                <label class="control-label">Mother's Name</label>
                 <input type="text" class="form-control" name="motherName"
                 [(ngModel)]="student.MotherName">
              </div>
           </div>
           <div class="row form-group">
              <div class="col-md-5">
-                <label class="control-label">Parent/ Guardian Email Address</label>
+                <label class="control-label">Parent/ Guardian's Email Address</label>
                 <input type="text" class="form-control" name="parentEmail"
                 [(ngModel)]="student.ParentEmailAddress">
              </div>
              <div class="col-md-5 col-md-offset-1">
-                <label class="control-label">Parent/ Guardian Mobile Number</label>
+                <label class="control-label">Parent/ Guardian's Mobile Number</label>
                 <span [hidden]="contactControl.valid || contactControl.untouched"
                    class="alert text-danger">(Provide mobile number)</span>
                 <input type="text" class="form-control" name="parentMobile"
@@ -78,14 +78,14 @@
        </card>
     </div>
     <div class="col-md-6">
-       <card cardTitle="Enrollment Information:">
+       <card cardTitle="Enrollment Information">
           <div class="row form-group">
              <div class="col-md-5">
                 <label class="control-label">Standard</label>
                 <select class="form-control" name="standard"
                 [(ngModel)]="student.Standard">
-                <option value="-1">Select Standard</option>
-                <option  *ngFor="let standard of standards" value="Standard.StandardId">
+                <option value="-1" selected disabled>Select Standard</option>
+                <option  *ngFor="let standard of standards" value="standard.StandardId">
                    {{standard.class}} {{standard.section}} {{standard.medium}}
                 </option>
                 </select>

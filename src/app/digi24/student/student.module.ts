@@ -8,7 +8,7 @@ import { ListStudentComponent } from './component/list-student/list-student.comp
 import { UpdateStudentComponent } from './component/update-student/update-student.component';
 import { ViewStudentComponent } from './component/view-student/view-student.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     StudentRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     SharedModule,
     NgxPaginationModule
   ],

@@ -78,25 +78,47 @@
     </div>
     <div class="col-md-6">
       <card cardTitle="Subscription Information">
-        <label class="control-label col-md-4">Id</label>
-        <label class="control-label col-md-4">Status</label>
+        <label class="control-label col-md-2 col-md-offset-0.5">Id</label>
+        <label class="control-label col-md-5">Status</label>
         <label class="control-label col-md-4">Valid Till</label>
-        <div *ngFor="let subscription of subscriptions">
-          <label class="control-label col-md-4">{{ subscription.SubscriptionId }}</label>
-          <label class="control-label col-md-4">{{ subscription.Status }}</label>
-          <label class="control-label col-md-4">{{ subscription.ExpiryDate }}</label>
+        <div formArrayName="subscriptionDetails" 
+          *ngFor="let subscription of updateStudentForm.get('subscriptionDetails').controls;
+                  let i = index">
+          <div class="row form-group" [formGroupName]="i">
+            <div class="col-md-2 col-md-offset-0.5">
+              <input type="text" class="form-control" formControlName="SubscriptionId">
+            </div>
+            <div class="col-md-5">
+              <input type="text" class="form-control col-md-1 col-md-offset-0.5" formControlName="Status">
+            </div>
+            <div  class="col-md-4 col-md-offset-0.5">
+              <input type="text" class="form-control col-md-1 col-md-offset-0.5" formControlName="ExpiryDate">
+            </div>
+          </div>
+          <br>
         </div>
       </card>
     </div>
     <div class="col-md-6">
       <card cardTitle="Academic Information">
-        <label class="control-label col-md-4">Standard</label>
-        <label class="control-label col-md-4">Year</label>
+        <label class="control-label col-md-2 col-md-offset-0.5">Standard</label>
+        <label class="control-label col-md-5">AcademicYear</label>
         <label class="control-label col-md-4">Result</label>
-        <div *ngFor="let academic of academics">
-          <label class="control-label col-md-4">{{ academic.Standard }}</label>
-          <label class="control-label col-md-4">{{ academic.AcademicYear }}</label>
-          <label class="control-label col-md-4">{{ academic.Result }}</label>
+        <div formArrayName="academicDetails" 
+          *ngFor="let academic of updateStudentForm.get('academicDetails').controls;
+                  let i = index">
+          <div class="row form-group" [formGroupName]="i">
+            <div class="col-md-2 col-md-offset-0.5">
+              <input type="text" class="form-control" formControlName="Standard">
+            </div>
+            <div class="col-md-5">
+              <input type="text" class="form-control col-md-1 col-md-offset-0.5" formControlName="AcademicYear">
+            </div>
+            <div  class="col-md-4 col-md-offset-0.5">
+              <input type="text" class="form-control col-md-1 col-md-offset-0.5" formControlName="Result">
+            </div>
+          </div>
+          <br>
         </div>
       </card>
     </div>

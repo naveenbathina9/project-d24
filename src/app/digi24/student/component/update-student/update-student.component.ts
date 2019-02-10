@@ -75,8 +75,25 @@ export class UpdateStudentComponent extends RootComponent implements OnInit {
       parentMobileNumber: ['', Validators.required],
       academicYear: [''],
       profilePicture: [''],
-      standard: ['']
+      standard: [''],
+      subscriptionDetails: this.formBuilder.array([this.createSubscriptions()]),
+      academicDetails: this.formBuilder.array([this.createAcademics()])
     });
   }
 
+  createSubscriptions(): FormGroup {
+    return this.formBuilder.group({
+      SubscriptionId: [''],
+      Status: [''],
+      ExpiryDate: ['']
+    });
+  }
+
+  createAcademics(): FormGroup {
+    return this.formBuilder.group({
+      Standard: [''],
+      AcademicYear: [''],
+      Result: ['']
+    });
+  }
 }
